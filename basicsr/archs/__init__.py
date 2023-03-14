@@ -9,10 +9,10 @@ __all__ = ['build_network']
 
 # automatically scan and import arch modules for registry
 # scan all the files under the 'archs' folder and collect files ending with '_arch.py'
-arch_folder = osp.dirname(osp.abspath(__file__))
-arch_filenames = [osp.splitext(osp.basename(v))[0] for v in scandir(arch_folder) if v.endswith('_arch.py')]
+arch_folder = osp.dirname(osp.abspath(__file__))  #path except last
+arch_filenames = [osp.splitext(osp.basename(v))[0] for v in scandir(arch_folder) if v.endswith('_arch.py')]  #path.splitext split a/b/c/img_01  and .jpg  path.basename returns the last
 # import all the arch modules
-_arch_modules = [importlib.import_module(f'basicsr.archs.{file_name}') for file_name in arch_filenames]
+_arch_modules = [importlib.import_module(f'basicsr.archs.{file_name}') for file_name in arch_filenames]  #module=importlib.import_module("name")
 
 
 def build_network(opt):

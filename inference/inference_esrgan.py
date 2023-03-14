@@ -27,12 +27,12 @@ def main():
     model.eval()
     model = model.to(device)
 
-    os.makedirs(args.output, exist_ok=True)
+    os.makedirs(args.output, exist_ok=True)  # if dir exsits not except
     for idx, path in enumerate(sorted(glob.glob(os.path.join(args.input, '*')))):
         imgname = os.path.splitext(os.path.basename(path))[0]
         print('Testing', idx, imgname)
         # read image
-        img = cv2.imread(path, cv2.IMREAD_COLOR).astype(np.float32) / 255.
+        img = cv2.imread(path, cv2.IMREAD_COLOR).astype(np.float32) / 255.  #float32 [0,1]
         img = torch.from_numpy(np.transpose(img[:, :, [2, 1, 0]], (2, 0, 1))).float()
         img = img.unsqueeze(0).to(device)
         # inference

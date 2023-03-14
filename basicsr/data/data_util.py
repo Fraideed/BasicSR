@@ -31,7 +31,7 @@ def read_img_seq(path, require_mod_crop=False, scale=1, return_imgname=False):
     if require_mod_crop:
         imgs = [mod_crop(img, scale) for img in imgs]
     imgs = img2tensor(imgs, bgr2rgb=True, float32=True)
-    imgs = torch.stack(imgs, dim=0)
+    imgs = torch.stack(imgs, dim=0)  #expand dim
 
     if return_imgname:
         imgnames = [osp.splitext(osp.basename(path))[0] for path in img_paths]

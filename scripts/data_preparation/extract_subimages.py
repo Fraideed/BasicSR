@@ -40,7 +40,7 @@ def main():
     """
 
     opt = {}
-    opt['n_thread'] = 20
+    opt['n_thread'] = 10
     opt['compression_level'] = 3
 
     # HR images
